@@ -1,7 +1,7 @@
 export default ({ env }) => ({
     upload: {
         config: {
-            provider: 's3.twcstorage.ru',
+            provider: 'aws-s3',
             providerOptions: {
                 credentials: {
                     accessKeyId: env('S3_ACCESS_KEY_ID'),
