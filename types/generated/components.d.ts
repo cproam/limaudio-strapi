@@ -1,5 +1,22 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedKontakt extends Struct.ComponentSchema {
+  collectionName: 'components_shared_kontakt';
+  info: {
+    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442';
+    icon: 'paperPlane';
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    geo: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    schedule: Schema.Attribute.String;
+    telegram: Schema.Attribute.String;
+    whatsapp: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -45,6 +62,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
   attributes: {
     metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    metaKeys: Schema.Attribute.String;
     metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
     shareImage: Schema.Attribute.Media<'images'>;
   };
@@ -65,6 +83,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.kontakt': SharedKontakt;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

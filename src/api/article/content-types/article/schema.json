@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article",
+    "displayName": "Статья",
     "description": "Create your blog content"
   },
   "options": {
@@ -17,23 +17,35 @@
     },
     "description": {
       "type": "text",
-      "maxLength": 80
+      "maxLength": 500
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
+    "views": {
+      "type": "integer",
+      "default": 0
+    },
     "cover": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     },
-    "author": {
+    "user": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::topic.topic"
     },
     "category": {
       "type": "relation",
@@ -41,9 +53,24 @@
       "target": "api::category.category",
       "inversedBy": "articles"
     },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment"
+    },
     "blocks": {
       "type": "dynamiczone",
-      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+      "components": [
+        "shared.media",
+        "shared.quote",
+        "shared.rich-text",
+        "shared.slider"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }
