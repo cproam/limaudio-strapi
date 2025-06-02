@@ -42,10 +42,11 @@
       "relation": "oneToOne",
       "target": "admin::user"
     },
-    "topic": {
+    "topics": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::topic.topic"
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
+      "inversedBy": "articles"
     },
     "category": {
       "type": "relation",

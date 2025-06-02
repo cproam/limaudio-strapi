@@ -22,6 +22,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "topics"
     }
   }
 }
